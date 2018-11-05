@@ -12,8 +12,8 @@ export default class StudentItem extends Component {
   }
   deleteStudent()
   {
-    const {name} = this.props.student;
-this.props.deleteStudent(name);
+    const {id} = this.props.student;
+this.props.deleteStudent(id);
   }
   editStudent()
   {
@@ -23,10 +23,11 @@ this.props.deleteStudent(name);
   }
   editStudentSubmit()
   {
+    const {id} = this.props.student;
     this.setState((prevState,props) => ({
       isEdit : !prevState.isEdit
     }));
-    this.props.editStudentSubmit(this.nameInput.value,this.gradeInput.value,this.schoolInput.value,this.props.index);
+    this.props.editStudentSubmit(id,this.nameInput.value,this.gradeInput.value,this.schoolInput.value,this.props.index);
   }
     render() {
         const {name,grade,school} = this.props.student;
