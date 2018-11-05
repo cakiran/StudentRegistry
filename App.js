@@ -32,15 +32,15 @@ class App extends Component {
   addNewStudent() {
     this.setState((prevState, props) => ({
 
-      studentList: [...prevState.studentList, { name: '', grade: 1, school: '' }]
+      studentList: [...prevState.studentList, { id:Math.max(...prevState.studentList.map(function(o){return o.id})) + 1,name: '', grade: 1, school: '' }]
 
     }));
   }
 
-  deleteStudent(name) {
+  deleteStudent(id) {
     let r = window.confirm("Do you want to delete this item");
     if (r === true) {
-      let filteredStudentList = this.state.studentList.filter(x => x.name != name);
+      let filteredStudentList = this.state.studentList.filter(x => x.id !== id);
 
       this.setState((prevState, props) => ({
         studentList: filteredStudentList
@@ -48,9 +48,9 @@ class App extends Component {
       localStorage.setItem('students', JSON.stringify(filteredStudentList));
     }
   }
-  editStudentSubmit(name, grade, school, index) {
-    let studentListCopy = this.state.studentList.map((student, stdIndex) => {
-      if (index == stdIndex) {
+  editStudentSubmit(id,name, grade, school) {
+    let studentListCopy = this.state.studentList.map((student) => {
+      if (student.id === id) {
         student.name = name;
         student.grade = grade;
         student.school = school;
@@ -60,7 +60,6 @@ class App extends Component {
     this.setState((prevState, props) => ({
       studentList: studentListCopy
     }));
-
     localStorage.setItem('students', JSON.stringify(studentListCopy));
   }
   render() {
