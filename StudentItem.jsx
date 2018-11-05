@@ -27,7 +27,7 @@ this.props.deleteStudent(id);
     this.setState((prevState,props) => ({
       isEdit : !prevState.isEdit
     }));
-    this.props.editStudentSubmit(id,this.nameInput.value,this.gradeInput.value,this.schoolInput.value,this.props.index);
+    this.props.editStudentSubmit(id,this.nameInput.value,this.gradeInput.value,this.schoolInput.value);
   }
     render() {
         const {name,grade,school} = this.props.student;
